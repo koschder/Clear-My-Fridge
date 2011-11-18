@@ -21,10 +21,10 @@ public class UserRepositoryTest {
 
 	@Test
 	public void testSaveNewUser() {
-		User johnDoe = johnDoe();
-		userRepository.save(johnDoe);
+		User user = johnDoe();
+		userRepository.save(user);
 
-		assertEquals(johnDoe, userRepository.findAll().iterator().next());
+		assertEquals(user, userRepository.findAll().iterator().next());
 	}
 
 	private User johnDoe() {
