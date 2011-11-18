@@ -1,4 +1,7 @@
-#Wed Nov 16 19:39:05 CET 2011
+#Fri Nov 18 13:44:43 CET 2011
 eclipse.preferences.version=1
 org.eclipse.jpt.core.platform=eclipselink2_2
 org.eclipse.jpt.jpa.core.discoverAnnotatedClasses=true
+problem.PROJECT_INVALID_CONNECTION=warning
+problem.PROJECT_NO_CONNECTION=ignore
+workspace_preferences_overriden=true
