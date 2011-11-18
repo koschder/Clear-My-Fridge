@@ -3,7 +3,7 @@
 
 	<include file="src/main/resources/consoleAppender.xml"/>
 	
-	<root level="DEBUG">
+	<root level="INFO">
 		<appender-ref ref="stdout" />
 	</root>
 </configuration>
