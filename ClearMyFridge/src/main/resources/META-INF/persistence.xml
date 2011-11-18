@@ -3,5 +3,7 @@
 	<persistence-unit name="ClearMyFridge">
 		<class>ch.bfh.cmf.domain.User</class>
 		<class>ch.bfh.cmf.domain.Ingredient</class>
+		<class>ch.bfh.cmf.domain.Rating</class>
+		<class>ch.bfh.cmf.domain.Recipe</class>
 	</persistence-unit>
 </persistence>
