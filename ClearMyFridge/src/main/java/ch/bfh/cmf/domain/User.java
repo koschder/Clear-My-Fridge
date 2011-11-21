@@ -14,6 +14,15 @@ public class User {
 	private String name;
 	private String email;
 
+	public User() {
+		// needed for jpa
+	}
+
+	public User(String name) {
+		super();
+		this.name = name;
+	}
+
 	public long getId() {
 		return id;
 	}
