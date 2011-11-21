@@ -8,10 +8,8 @@
 	xmlns:jpa="http://www.springframework.org/schema/data/jpa">
 
 	<import resource="infrastructure.xml" />
+	
 	<context:annotation-config />
-	<!-- Custom configuration for the custom implementation based on JDBC -->
-	<bean id="userRepository" class="ch.bfh.cmf.repositories.UserRepositoryImpl">
-	</bean>
 
 	<jpa:repositories base-package="ch.bfh.cmf.repositories" />
 
