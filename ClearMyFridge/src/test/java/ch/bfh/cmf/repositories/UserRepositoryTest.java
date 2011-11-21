@@ -18,19 +18,29 @@ public class UserRepositoryTest {
 
 	@Autowired
 	UserRepository userRepository;
+	private String name;
 
 	@Test
 	public void testSaveNewUser() {
-		User user = johnDoe();
-		userRepository.save(user);
+		User john = johnDoe();
+		userRepository.save(john);
 
-		assertEquals(user, userRepository.findAll().iterator().next());
+		assertEquals(john, userRepository.findAll().iterator().next());
+	}
+
+	@Test
+	public void testFindByName() {
+		User john = johnDoe();
+		userRepository.save(john);
+		assertEquals(john, userRepository.findByName(name));
+		assertNull(userRepository.findByName("otherName"));
 	}
 
 	private User johnDoe() {
 		User user = new User();
 		user.setEmail("john@doe.com");
-		user.setName("John Doe");
+		name = "John Doe";
+		user.setName(name);
 		return user;
 	}
 
