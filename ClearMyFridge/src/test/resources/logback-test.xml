@@ -3,6 +3,8 @@
 
 	<include file="src/main/resources/consoleAppender.xml"/>
 	
+	<logger name="org.hibernate.tool.hbm2ddl" level="DEBUG" />
+	
 	<root level="INFO">
 		<appender-ref ref="stdout" />
 	</root>
