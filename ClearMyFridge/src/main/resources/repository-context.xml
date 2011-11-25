@@ -8,9 +8,8 @@
 	xmlns:jpa="http://www.springframework.org/schema/data/jpa">
 
 	<import resource="infrastructure.xml" />
-	
-	<context:annotation-config />
 
+	<context:component-scan base-package="ch.bfh.cmf.services" />
 	<jpa:repositories base-package="ch.bfh.cmf.repositories" />
 
 </beans>
