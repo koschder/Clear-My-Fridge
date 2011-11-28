@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import ch.bfh.cmf.domain.Ingredient;
+import ch.bfh.cmf.domain.Recipe;
 
 import static org.junit.Assert.*;
 
@@ -18,14 +19,26 @@ public class IngredientRepositoryTest {
 
 	@Autowired
 	private IngredientRepository ingredientRepository;
+	@Autowired
+	private RecipeRepository recipeRepository;
 
 	@Test
 	public void testSaveNewIngredient() {
+
 		Ingredient ingredient = new Ingredient();
 		ingredientRepository.save(ingredient);
 
 		assertEquals(ingredient, ingredientRepository.findAll().iterator()
 				.next());
+	}
+
+	@Test
+	public void testSaveRecipeWithTransientIngredient() {
+		Recipe recipe = new Recipe("chickenCurry");
+		Ingredient chicken = new Ingredient("chicken");
+		recipe.addIngredient(chicken, 100, "g");
+		recipeRepository.save(recipe);
+
 	}
 
 }

@@ -20,7 +20,12 @@ public class Ingredient {
 	private String picture;
 
 	public Ingredient() {
+		// needed for jpa
+	}
+
+	public Ingredient(String name) {
 		super();
+		this.name = name;
 	}
 
 	public long getId() {

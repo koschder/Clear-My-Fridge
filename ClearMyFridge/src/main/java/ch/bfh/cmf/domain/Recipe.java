@@ -1,9 +1,16 @@
 package ch.bfh.cmf.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.apache.commons.lang3.Validate;
 
 import static javax.persistence.GenerationType.*;
 
@@ -15,8 +22,19 @@ public class Recipe {
 	private String name;
 	@ManyToOne
 	private User author;
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "recipe")
+	private Set<RecipeIngredientMapping> ingredients;
 	private String description;
 	private String picture;
+
+	public Recipe() {
+		// needed for jpa
+	}
+
+	public Recipe(String name) {
+		super();
+		this.name = name;
+	}
 
 	public long getId() {
 		return id;
@@ -56,6 +74,22 @@ public class Recipe {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+
+	public Set<RecipeIngredientMapping> getIngredients() {
+		return ingredients;
+	}
+
+	public void addIngredient(Ingredient ingredient, int quantity, String unit) {
+		if (ingredients == null)
+			ingredients = new HashSet<RecipeIngredientMapping>();
+		RecipeIngredientMapping mapping = new RecipeIngredientMapping(this,
+				ingredient, quantity, unit);
+		Validate.isTrue(
+				!ingredients.contains(mapping),
+				"This recipe already contains %d, use changeQuantity() instead.",
+				ingredient);
+		ingredients.add(mapping);
 	}
 
 	@Override
