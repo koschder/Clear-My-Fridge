@@ -28,8 +28,7 @@ public class IngredientRepositoryTest {
 		Ingredient ingredient = new Ingredient();
 		ingredientRepository.save(ingredient);
 
-		assertEquals(ingredient, ingredientRepository.findAll().iterator()
-				.next());
+		assertEquals(ingredient, ingredientRepository.findAll().iterator().next());
 	}
 
 	@Test
@@ -38,7 +37,5 @@ public class IngredientRepositoryTest {
 		Ingredient chicken = new Ingredient("chicken");
 		recipe.addIngredient(chicken, 100, "g");
 		recipeRepository.save(recipe);
-
 	}
-
 }
