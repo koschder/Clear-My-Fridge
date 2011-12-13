@@ -3,6 +3,8 @@
 	<name>ch.clearmyfridge.web</name>
 	<comment></comment>
 	<projects>
+		<project>ch.clearmyfridge.model</project>
+		<project>ch.clearmyfridge.service</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

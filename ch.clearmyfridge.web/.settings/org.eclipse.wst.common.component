@@ -6,6 +6,12 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources"/>
+        <dependent-module archiveName="ch.clearmyfridge.model.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ch.clearmyfridge.model/ch.clearmyfridge.model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ch.clearmyfridge.service.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ch.clearmyfridge.service/ch.clearmyfridge.service">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="ch.clearmyfridge.web"/>
         <property name="java-output-path" value="/ch.clearmyfridge.web/target/classes"/>
     </wb-module>
