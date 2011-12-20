@@ -16,7 +16,7 @@ import ch.bfh.cmf.repositories.RecipeRepository;
 import ch.bfh.cmf.repositories.UserRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:repository-context.xml")
+@ContextConfiguration(locations = "classpath:test-application-context.xml")
 @Transactional
 public class ModelRelationshipsTest {
 

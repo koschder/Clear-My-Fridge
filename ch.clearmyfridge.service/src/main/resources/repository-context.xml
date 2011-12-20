@@ -7,9 +7,6 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jpa="http://www.springframework.org/schema/data/jpa">
 
-	<import resource="infrastructure.xml" />
-
-	<context:component-scan base-package="ch.bfh.cmf.services" />
 	<jpa:repositories base-package="ch.bfh.cmf.repositories" />
 
 </beans>

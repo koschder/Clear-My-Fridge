@@ -13,7 +13,7 @@ import ch.bfh.cmf.domain.Recipe;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:repository-context.xml")
+@ContextConfiguration(locations = "classpath:test-application-context.xml")
 @Transactional
 public class IngredientRepositoryTest {
 
