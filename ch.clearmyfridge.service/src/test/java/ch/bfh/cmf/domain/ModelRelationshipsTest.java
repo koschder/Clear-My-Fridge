@@ -9,11 +9,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.junit.Assert.*;
+
 import ch.bfh.cmf.repositories.RatingRepository;
 import ch.bfh.cmf.repositories.RecipeRepository;
 import ch.bfh.cmf.repositories.UserRepository;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:repository-context.xml")
