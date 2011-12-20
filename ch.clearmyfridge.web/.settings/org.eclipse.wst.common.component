@@ -12,7 +12,7 @@
         <dependent-module archiveName="ch.clearmyfridge.service.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ch.clearmyfridge.service/ch.clearmyfridge.service">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <property name="context-root" value="ch.clearmyfridge.web"/>
         <property name="java-output-path" value="/ch.clearmyfridge.web/target/classes"/>
+        <property name="context-root" value="clearmyfridge"/>
     </wb-module>
 </project-modules>
