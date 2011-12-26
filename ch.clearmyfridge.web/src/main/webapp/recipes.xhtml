@@ -2,59 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-	<title>BFH BookApp</title>
+	<title>Clear My Fridge</title>
 </h:head>
 
 <h:body>
-	
-	<f:view>	
-		
-<!-- 		<h2><h:outputText value="Current Book" /></h2> -->
-<!-- 		<h:form id="form"> -->
 
-<!-- 				<h:outputText id="title-text" value="Title" /> -->
-<!-- 				<h:inputText id="title" style="width: 500px:" value="#{bookBean.currentBook.title}"/> -->
-				
-<!-- 				<br/> -->
-								
-<!-- 				<h:outputText id="releaseDate-text" value="Release date" /> -->
-<!-- 				<h:inputText id="releaseDate" value="#{bookBean.currentBook.releaseDate}"> -->
-<!-- 					<f:convertDateTime pattern="dd.MM.yyyy" timeZone="CET" /> -->
-<!-- 				</h:inputText> -->
-					
-<!-- 				<br/> -->
-				
-<!-- 				<h:outputText id="releaseDate-text" value="Release date" /> -->
-<!-- 				<p:calendar value="#{bookBean.currentBook.releaseDate}" showOn="button" /> -->
-<!-- 				<h:commandButton id="today" value="Today"> -->
-<!-- 					<f:ajax event="click"/> -->
-<!-- 				</h:commandButton>  -->
-				
-<!-- 				<br/> -->
+	<f:view>
+		<h2>
+			<h:outputText value="Recipes" />
+		</h2>
 
-<!-- 				<h:commandButton id="save" action="#{bookBean.save}" -->
-<!-- 					value="Save Book" /> -->
-<!-- 				<h:commandButton id="cancel" action="#{bookBean.cancel}" -->
-<!-- 					value="Cancel" /> -->
-<!-- 				<h:commandButton id="authorsDirect" action="author.xhtml" -->
-<!-- 					value="Authors Direct" /> -->
-<!-- 				<h:commandButton id="authorsBean" action="#{bookBean.gotoAuthor}" -->
-<!-- 					value="Authors Bean" /> -->
-
-<!-- 		</h:form> -->
-		
-		<h2><h:outputText value="Recipes" /></h2>
-		
 		<h:form id="list">
-<!-- 			<h:selectBooleanCheckbox id="showAuthor" value="#{bookBean.showAuthor}"> -->
-<!-- 				<f:ajax render="table"/> -->
-<!-- 			</h:selectBooleanCheckbox> -->
-<!-- 			<h:outputLabel for="showAuthor" value="Show Author"/> -->
-			<h:dataTable id="table" value="#{recipePageBean.recipes}" var="recipe" border="1">
+			<h:dataTable id="table" value="#{recipesPageBean.recipes}"
+				var="recipe" border="1">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Id" />
@@ -67,45 +30,48 @@
 					</f:facet>
 					<h:outputText value="#{recipe.name}" />
 				</h:column>
-				
-				<h:dataTable id="table" value="#{recipe.ingredients}" var="ingredientMapping" border="1">
+
+				<h:dataTable id="table" value="#{recipe.ingredients}"
+					var="ingredientMapping" border="1">
 					<h:column>
-					<f:facet name="header">
-						<h:outputText value="Name" />
-					</f:facet>
-					<h:outputText value="#{ingredientMapping.ingredient.name}" />
-				</h:column>
+						<f:facet name="header">
+							<h:outputText value="Name" />
+						</f:facet>
+						<h:outputText value="#{ingredientMapping.ingredient.name}" />
+					</h:column>
 				</h:dataTable>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Create" />
+					</f:facet>
+					<h:commandButton id="create" action="#{recipesPageBean.create}"
+						value="Create" />
+				</h:column>
 
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Edit" />
 					</f:facet>
-					<h:commandButton id="edit" action="#{recipePageBean.edit}" value="Edit" />
+					<h:commandButton id="edit" action="#{recipesPageBean.edit}"
+						value="Edit" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Delete" />
 					</f:facet>
-					<h:commandButton id="delete" action="#{recipePageBean.delete}"
+					<h:commandButton id="delete" action="#{recipesPageBean.delete}"
 						value="Delete" />
 				</h:column>
-				
-<!-- 				<h:column rendered="#{bookBean.showAuthor}"> -->
-<!-- 					<f:facet name="header"> -->
-<!-- 						<h:outputText value="Author" /> -->
-<!-- 					</f:facet> -->
-<!-- 					<h:outputText value="#{book.author.lastname}" /> -->
-<!-- 				</h:column> -->
 
 			</h:dataTable>
 		</h:form>
-		
-		<h:messages style="color: red;"/>
-		
+
+		<h:messages style="color: red;" />
+
 	</f:view>
-	
+
 </h:body>
 
 </html>

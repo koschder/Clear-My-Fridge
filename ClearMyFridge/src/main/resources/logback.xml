@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-	<include file="src/main/resources/consoleAppender.xml" />
+	<include file="consoleAppender.xml" />
 	
 	<root level="WARN">
 		<appender-ref ref="stdout" />

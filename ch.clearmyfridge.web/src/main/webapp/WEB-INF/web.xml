@@ -19,7 +19,7 @@
 	</listener>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:/META-INF/*Context.xml /WEB-INF/applicationContext.xml</param-value>
+		<param-value>classpath*:/web-application-context.xml classpath*:/dev-application-context.xml</param-value>
 	</context-param>
 
 </web-app>
