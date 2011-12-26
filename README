@@ -1,4 +1,22 @@
 Clear My Fridge
 
 Sample Project for BFH Module SWOS
-test
+
+
+*** Entwicklungsumgebung
+
+** Tomcat
+
+Nach dem Importieren der Projekte muss ein Tomcat für lokale Tests konfiguriert werden. In der SpringSource Toolsuite geht das wie folgt:
+
+1) Im "Servers" View: Rechtsklick -> New -> Server
+2) Tomcat 7 Server auswählen, hostname: localhost, Server name: egal, -> Next
+3) Im nächsten Dialog auf "Download and Install..." klicken, Installationsverzeichnis auswählen. Es kann eine Weile dauern, bis die Fehlermeldung ("invalid installation directory" oder so ähnlich) verschwindet, weil Eclipse den Tomcat erst installieren muss. -> Next
+4) Add and Remove: ch.clearmyfridge.web auswählen und "Add>" klicken -> Finish
+
+** MySQL
+
+Die Entwicklungsumgebung braucht eine MySQL Datenbank, die ihr wie gewohnt installieren könnt. 
+Konfiguriert wird die Datenbank über das File ch.clearmyfridge.service/src/main/resources/jdbc.properties. Im Repository ist eine jdbc.properties.sample Datei, die ihr einfach kopieren und ggf. anpassen könnt. Wenn eure Datenbank-Installation den Sample Properties entspricht, braucht ihr natürlich nichts anzupassen.
+
+
