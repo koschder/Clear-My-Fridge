@@ -19,4 +19,5 @@ Nach dem Importieren der Projekte muss ein Tomcat für lokale Tests konfiguriert
 Die Entwicklungsumgebung braucht eine MySQL Datenbank, die ihr wie gewohnt installieren könnt. 
 Konfiguriert wird die Datenbank über das File ch.clearmyfridge.service/src/main/resources/jdbc.properties. Im Repository ist eine jdbc.properties.sample Datei, die ihr einfach kopieren und ggf. anpassen könnt. Wenn eure Datenbank-Installation den Sample Properties entspricht, braucht ihr natürlich nichts anzupassen.
 
-
+** Test
+Die Applikation sollte jetzt über http://localhost:8080/clearmyfridge/ erreichbar sein.
