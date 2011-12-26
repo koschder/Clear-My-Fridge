@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-	<include file="src/main/resources/consoleAppender.xml"/>
+	<include resource="consoleAppender.xml"/>
 	
 	<logger name="org.hibernate.tool.hbm2ddl" level="DEBUG" />
 	
