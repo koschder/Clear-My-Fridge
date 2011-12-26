@@ -40,7 +40,7 @@
 						<h:outputText value="#{ingredientMapping.ingredient.name}" />
 					</h:column>
 				</h:dataTable>
-				
+
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Create" />
@@ -54,7 +54,10 @@
 						<h:outputText value="Edit" />
 					</f:facet>
 					<h:commandButton id="edit" action="#{recipesPageBean.edit}"
-						value="Edit" />
+						value="Edit">
+						<f:setPropertyActionListener target="#{recipesPageBean.recipe}"
+							value="#{recipe}" />
+					</h:commandButton>
 				</h:column>
 
 				<h:column>
@@ -62,7 +65,10 @@
 						<h:outputText value="Delete" />
 					</f:facet>
 					<h:commandButton id="delete" action="#{recipesPageBean.delete}"
-						value="Delete" />
+						value="Delete">
+						<f:setPropertyActionListener target="#{recipesPageBean.recipe}"
+							value="#{recipe}" />
+					</h:commandButton>
 				</h:column>
 
 			</h:dataTable>

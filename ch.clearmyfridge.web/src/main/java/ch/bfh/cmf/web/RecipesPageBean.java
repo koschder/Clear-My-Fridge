@@ -15,9 +15,36 @@ import ch.bfh.cmf.repositories.RecipeRepository;
 public class RecipesPageBean {
 	@Inject
 	private RecipeRepository recipeRepository;
-	
-	public List<Recipe> getRecipes()
-	{
+
+	private Recipe currentRecipe;
+
+	public List<Recipe> getRecipes() {
 		return recipeRepository.findAll();
+	}
+
+	public Object create() {
+		currentRecipe = new Recipe();
+		return "/recipe/create.xhtml";
+	}
+
+	public Object edit() {
+		return "/recipe/edit.xhtml";
+	}
+
+	public Object delete() {
+		recipeRepository.delete(currentRecipe);
+		return "/recipe/list.xhtml";
+	}
+	public Object save() {
+		recipeRepository.save(currentRecipe);
+		return "/recipe/list.xhtml";
+	}
+
+	public Recipe getRecipe() {
+		return currentRecipe;
+	}
+	
+	public void setRecipe(Recipe recipe) {
+		this.currentRecipe = recipe;
 	}
 }
