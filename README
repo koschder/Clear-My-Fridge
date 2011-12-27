@@ -21,3 +21,6 @@ Konfiguriert wird die Datenbank über das File ch.clearmyfridge.service/src/main
 
 ** Test
 Die Applikation sollte jetzt über http://localhost:8080/clearmyfridge/ erreichbar sein.
+
+** User
+Login funktioniert aktuell wie folgt: mit "admin" als Benutzername und Passwort loggt man sich als Admin ein, mit einem anderen Benutzernamen als normaler User. User müssen in der DB erfasst sein (ausgenommen der Admin), Passwort ist immer gleich dem Benutzernamen. Welche URL welche Rechte braucht, ist im web-application-context.xml festgelegt.
