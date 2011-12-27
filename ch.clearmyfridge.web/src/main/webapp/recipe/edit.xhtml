@@ -14,18 +14,7 @@
 		<h2>
 			<h:outputText value="Edit Recipe" />
 		</h2>
-
-		<h:form id="editRecipe">
-
-			<h:outputText value="Name" />
-			<h:inputText value="#{recipesPageBean.recipe.name}" />
-			<br />
-			<h:outputText value="Description" />
-			<h:inputText value="#{recipesPageBean.recipe.description}" />
-			<h:commandButton id="save" action="#{recipesPageBean.save}"
-				value="Save" />
-
-		</h:form>
+		<ui:include src="recipeForm.xhtml"/>
 
 		<h:messages style="color: red;" />
 
