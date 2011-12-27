@@ -8,4 +8,6 @@ import ch.bfh.cmf.domain.Recipe;
 @Repository
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
+	Recipe findByName(String name);
+
 }

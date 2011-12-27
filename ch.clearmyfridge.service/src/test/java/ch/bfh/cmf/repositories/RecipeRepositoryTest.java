@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import ch.bfh.cmf.domain.Ingredient;
 import ch.bfh.cmf.domain.Recipe;
 import ch.bfh.cmf.domain.User;
 
@@ -48,6 +49,18 @@ public class RecipeRepositoryTest {
 		Recipe recipe = new Recipe();
 		recipe.setAuthor(new User("transient"));
 		recipeRepository.save(recipe);
+	}
+	
+	@Test
+	public void testLoadRecipeWithIngredients()
+	{
+		Recipe recipe = new Recipe();
+		recipe.setName("PfefferRezept");
+		recipe.addIngredient(new Ingredient("Pfeffer"), 2, "tsp");
+		recipeRepository.save(recipe);
+		
+		recipe = recipeRepository.findByName("PfefferRezept");
+		assertEquals("Pfeffer", recipe.getIngredients().iterator().next().getIngredient().getName());
 	}
 
 }
