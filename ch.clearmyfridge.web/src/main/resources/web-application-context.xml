@@ -13,9 +13,10 @@
 		<authentication-provider user-service-ref="userDetailsService" />
 	</authentication-manager>
 	<http auto-config="true">
-		<intercept-url pattern="/**" access="ROLE_USER" />
-    	<intercept-url pattern="/admin/**" access="ROLE_USER" />
-		<http-basic />
-		<logout invalidate-session="true" logout-success-url="/login.html" />
+    	<intercept-url pattern="/faces/recipe/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN" />
+		<form-login />
+		<access-denied-handler error-page="/faces/accessDenied.xhtml"/>
+		<logout invalidate-session="true" />
 	</http>
 </beans:beans>
