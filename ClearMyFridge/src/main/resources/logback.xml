@@ -2,7 +2,7 @@
 <configuration>
 
 	<include resource="consoleAppender.xml" />
-	
+	<logger name="ch.bfh.cmf" level="DEBUG" />
 	<root level="WARN">
 		<appender-ref ref="stdout" />
 	</root>

@@ -14,6 +14,10 @@
 		<h2>
 			<h:outputText value="Recipes" />
 		</h2>
+		<h:outputText value="You are logged in as: "/>
+		<h:outputText value="#{securityPageBean.user}"/>
+		<br />
+		<h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
 
 		<h:form id="list">
 			<h:dataTable id="table" value="#{recipesPageBean.recipes}"
