@@ -1,13 +1,15 @@
 package ch.bfh.cmf.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import ch.bfh.cmf.domain.Recipe;
 
-@Repository
-public interface RecipeRepository extends JpaRepository<Recipe, Long> {
+
+@Transactional(readOnly = true)
+public interface RecipeRepository extends JpaRepository<Recipe, Long>, RecipeRepositoryCustom {
 
 	Recipe findByName(String name);
+	
 
 }
