@@ -14,13 +14,13 @@
 		<h:commandButton id="save" action="#{recipesPageBean.save}"
 			value="Save" />
 
-		<h:dataTable id="table" value="#{recipePagesBean.recipe.ingredients}"
+		<h:dataTable id="table" value="#{recipesPageBean.recipe.ingredients}"
 			var="mapping" border="1">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Name" />
 				</f:facet>
-				<h:outputText value="#{mapping.quantity}" />
+				<h:outputText value="#{mapping.ingredient.name}" />
 			</h:column>
 		</h:dataTable>
 	</h:form>
