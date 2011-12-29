@@ -6,7 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -20,12 +19,11 @@ public class RecipeIngredientMapping {
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "recipe_id")
-	@PrimaryKeyJoinColumn
 	private Recipe recipe;
+
 	@Id
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "ingredient_id")
-	@PrimaryKeyJoinColumn
 	private Ingredient ingredient;
 	private Integer quantity;
 	private String unit;
@@ -34,8 +32,8 @@ public class RecipeIngredientMapping {
 		// needed for jpa
 	}
 
-	public RecipeIngredientMapping(Recipe recipe, Ingredient ingredient,
-			Integer quantity, String unit) {
+	public RecipeIngredientMapping(Recipe recipe, Ingredient ingredient, Integer quantity,
+			String unit) {
 		super();
 		this.recipe = recipe;
 		this.ingredient = ingredient;
@@ -79,8 +77,7 @@ public class RecipeIngredientMapping {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((ingredient == null) ? 0 : ingredient.hashCode());
+		result = prime * result + ((ingredient == null) ? 0 : ingredient.hashCode());
 		result = prime * result + ((recipe == null) ? 0 : recipe.hashCode());
 		return result;
 	}
