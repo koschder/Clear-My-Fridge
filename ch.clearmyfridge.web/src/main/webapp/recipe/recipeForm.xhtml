@@ -1,7 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition>
 	<h:form id="editRecipe">
 
@@ -13,6 +14,15 @@
 		<h:commandButton id="save" action="#{recipesPageBean.save}"
 			value="Save" />
 
+		<h:dataTable id="table" value="#{recipePagesBean.recipe.ingredients}"
+			var="mapping" border="1">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Name" />
+				</f:facet>
+				<h:outputText value="#{mapping.quantity}" />
+			</h:column>
+		</h:dataTable>
 	</h:form>
 </ui:composition>
 </html>
