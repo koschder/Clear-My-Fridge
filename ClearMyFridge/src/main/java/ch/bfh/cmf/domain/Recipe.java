@@ -2,8 +2,8 @@ package ch.bfh.cmf.domain;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -26,7 +26,7 @@ public class Recipe {
 	private User author;
 	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "recipe_id")
-	private Set<RecipeIngredientMapping> ingredients;
+	private List<RecipeIngredientMapping> ingredients;
 	private String description;
 	private String picture;
 
@@ -79,13 +79,13 @@ public class Recipe {
 		this.picture = picture;
 	}
 
-	public Set<RecipeIngredientMapping> getIngredients() {
+	public List<RecipeIngredientMapping> getIngredients() {
 		return ingredients;
 	}
 
 	public void addIngredient(Ingredient ingredient, int quantity, String unit) {
 		if (ingredients == null)
-			ingredients = new HashSet<RecipeIngredientMapping>();
+			ingredients = new ArrayList<RecipeIngredientMapping>();
 		RecipeIngredientMapping mapping = new RecipeIngredientMapping(this, ingredient, quantity,
 				unit);
 		Validate.isTrue(!ingredients.contains(mapping),
