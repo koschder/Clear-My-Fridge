@@ -20,7 +20,7 @@
 			<h:outputText value="#{recipe.description}" />
 		
 			<h3><h:outputText value="Ingredients" /></h3>
-				<h:dataTable id="table" value="#{recipePagesBean.recipe.ingredients}"
+			<h:dataTable id="table" value="#{recipePagesBean.recipe.ingredients}"
 			var="mapping" border="1">
 			<h:column>
 				<f:facet name="header">
@@ -28,6 +28,7 @@
 				</f:facet>
 				<h:outputText value="#{mapping.quantity}" />
 			</h:column>
+			</h:dataTable>
 			
 			<h3><h:outputText value="Rating" /></h3>
 			
@@ -35,18 +36,22 @@
 
 		<h:messages style="color: red;" />
 
-	<h:selectOneListbox>
-		<f:selectItem itemValue="1" />
-		<f:selectItem itemValue="2" />
-		<f:selectItem itemValue="3" />
-		<f:selectItem itemValue="4" />
-		<f:selectItem itemValue="5" />
-		<f:selectItem itemValue="6" />
-		<f:selectItem itemValue="7" />
-		<f:selectItem itemValue="8" />
-		<f:selectItem itemValue="9" />
-		<f:selectItem itemValue="10" />
-	</h:selectOneListbox>
+		<h:form>
+			<h:selectOneListbox value="#{recipesPageBean.ratingValue}">
+				<f:selectItem itemValue="1" />
+				<f:selectItem itemValue="2" />
+				<f:selectItem itemValue="3" />
+				<f:selectItem itemValue="4" />
+				<f:selectItem itemValue="5" />
+				<f:selectItem itemValue="6" />
+				<f:selectItem itemValue="7" />
+				<f:selectItem itemValue="8" />
+				<f:selectItem itemValue="9" />
+				<f:selectItem itemValue="10" />
+			</h:selectOneListbox>
+			
+			<h:commandButton value="rate" action="#{recipesPageBean.rate}" />
+		</h:form>
 	</f:view>
 
 </h:body>
