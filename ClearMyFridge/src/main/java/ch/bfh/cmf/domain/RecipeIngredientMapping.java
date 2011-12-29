@@ -1,11 +1,10 @@
 package ch.bfh.cmf.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -18,12 +17,12 @@ import javax.persistence.Table;
 public class RecipeIngredientMapping {
 	@Id
 	@ManyToOne
-	@JoinColumn(name = "recipe_id")
+	@PrimaryKeyJoinColumn(name = "recipe_id")
 	private Recipe recipe;
 
 	@Id
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "ingredient_id")
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name = "ingredient_id")
 	private Ingredient ingredient;
 	private Integer quantity;
 	private String unit;
