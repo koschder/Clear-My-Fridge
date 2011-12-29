@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Clear My Fridge</title>
+</h:head>
+
+<h:body>
+
+	<f:view>
+		<h2>
+			<h:outputText value="Search recipe database" />
+		</h2>
+		<h:outputText value="You are logged in as: "/>
+		<h:outputText value="#{securityPageBean.user}"/>
+		<br />
+		<h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
+		
+		<h:form id="list">
+			<h:inputText>
+				
+			</h:inputText>
+			
+			<h:commandButton id="save" action="#{searchBean.search}"
+			value="search" />
+				
+			<div>
+				<div style="float: left; width: 50%">
+				<h:dataTable id="selection" value="#{searchBean.foundIngredients}"
+					var="ingredient" border="1">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Name" />
+						</f:facet>
+						<h:outputText value="#{ingredient.name}" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Add" />
+						</f:facet>
+						<h:commandButton id="add" action="#{searchBean.add}" value="+" ></h:commandButton>
+					</h:column>
+					
+						
+				</h:dataTable>
+				</div>
+				
+				
+				<div style="float: left; width: 50%;">
+					<h:dataTable id="selected" value="#{seachBean.selectedIngredients}" border="1">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText value="#{ingredient.name}" />
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Remove" />
+							</f:facet>
+							<h:commandButton id="remove" action="#{searchBean.remove}" value="+" ></h:commandButton>
+						</h:column>
+					</h:dataTable>
+				</div>
+			</div>
+			
+			<h:commandButton value="Get me recipes!" action="#{searchBean.searchRecipe}" />
+		</h:form>
+		<h:messages style="color: red;" />
+
+	</f:view>
+
+</h:body>
+
+</html>
