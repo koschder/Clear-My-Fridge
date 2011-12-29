@@ -18,8 +18,16 @@
 		<h:outputText value="#{securityPageBean.user}"/>
 		<br />
 		<h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
+		
 
+						
 		<h:form id="list">
+		
+			<div>
+				<h:commandButton id="create" action="#{recipesPageBean.create}"
+						value="+Create" />
+			</div>
+		
 			<h:dataTable id="table" value="#{recipesPageBean.recipes}"
 				var="recipe" border="1">
 				<h:column>
@@ -47,14 +55,6 @@
 
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="Create" />
-					</f:facet>
-					<h:commandButton id="create" action="#{recipesPageBean.create}"
-						value="Create" />
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">
 						<h:outputText value="Edit" />
 					</f:facet>
 					<h:commandButton id="edit" action="#{recipesPageBean.edit}"
@@ -77,6 +77,7 @@
 
 			</h:dataTable>
 		</h:form>
+
 
 		<h:messages style="color: red;" />
 
