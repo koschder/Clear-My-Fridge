@@ -1,11 +1,11 @@
 package ch.bfh.cmf.domain;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import static javax.persistence.GenerationType.*;
 
 @Entity
 public class Rating {
@@ -17,6 +17,15 @@ public class Rating {
 	@ManyToOne(optional = false)
 	private Recipe recipe;
 	private int points;
+
+	public Rating() {
+		// required for jpa
+	}
+	public Rating(User user, Recipe recipe, int points) {
+		setUser(user);
+		setRecipe(recipe);
+		setPoints(points);
+	}
 
 	public long getId() {
 		return id;
@@ -47,6 +56,8 @@ public class Rating {
 	}
 
 	public void setPoints(int points) {
+		if (points < 1 || points > 10)
+			throw new IllegalArgumentException("Only Ratings with a score of 1-10 are allowed!");
 		this.points = points;
 	}
 

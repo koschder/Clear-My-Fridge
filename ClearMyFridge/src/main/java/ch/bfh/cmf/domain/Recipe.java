@@ -1,18 +1,20 @@
 package ch.bfh.cmf.domain;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.Validate;
-
-import static javax.persistence.GenerationType.*;
 
 @Entity
 public class Recipe {
@@ -22,7 +24,8 @@ public class Recipe {
 	private String name;
 	@ManyToOne
 	private User author;
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "recipe")
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@JoinColumn(name = "recipe_id")
 	private Set<RecipeIngredientMapping> ingredients;
 	private String description;
 	private String picture;
@@ -83,12 +86,10 @@ public class Recipe {
 	public void addIngredient(Ingredient ingredient, int quantity, String unit) {
 		if (ingredients == null)
 			ingredients = new HashSet<RecipeIngredientMapping>();
-		RecipeIngredientMapping mapping = new RecipeIngredientMapping(this,
-				ingredient, quantity, unit);
-		Validate.isTrue(
-				!ingredients.contains(mapping),
-				"This recipe already contains %d, use changeQuantity() instead.",
-				ingredient);
+		RecipeIngredientMapping mapping = new RecipeIngredientMapping(this, ingredient, quantity,
+				unit);
+		Validate.isTrue(!ingredients.contains(mapping),
+				"This recipe already contains %d, use changeQuantity() instead.", ingredient);
 		ingredients.add(mapping);
 	}
 
@@ -97,8 +98,7 @@ public class Recipe {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((author == null) ? 0 : author.hashCode());
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((picture == null) ? 0 : picture.hashCode());
 		return result;
@@ -134,6 +134,12 @@ public class Recipe {
 		} else if (!picture.equals(other.picture))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Recipe [id=" + id + ", name=" + name + ", author=" + author + ", ingredients="
+				+ ingredients + ", description=" + description + "]";
 	}
 
 }
