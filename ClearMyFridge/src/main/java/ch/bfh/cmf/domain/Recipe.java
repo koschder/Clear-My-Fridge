@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -25,6 +26,9 @@ public class Recipe {
 	private User author;
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
 	private List<RecipeIngredientMapping> ingredients;
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+	@JoinColumn(name = "recipe_id")
+	private List<Rating> ratings;
 	private String description;
 	private String picture;
 
@@ -75,6 +79,20 @@ public class Recipe {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+
+	public void addRating(Rating rating) {
+		if (ratings == null)
+			ratings = new ArrayList<Rating>();
+		ratings.add(rating);
 	}
 
 	public List<RecipeIngredientMapping> getIngredients() {

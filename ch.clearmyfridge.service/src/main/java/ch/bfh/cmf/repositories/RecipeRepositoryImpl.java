@@ -6,17 +6,13 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
+import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Repository;
 
 import ch.bfh.cmf.domain.Ingredient;
-import ch.bfh.cmf.domain.QIngredient;
-import ch.bfh.cmf.domain.QRecipe;
-import ch.bfh.cmf.domain.QRecipeIngredientMapping;
 import ch.bfh.cmf.domain.Recipe;
-
-import com.mysema.query.jpa.JPQLQuery;
-import com.mysema.query.jpa.impl.JPAQuery;
 
 @Repository
 public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
@@ -26,17 +22,26 @@ public class RecipeRepositoryImpl implements RecipeRepositoryCustom {
 
 	@Override
 	public List<Recipe> findByIngredients(Collection<Ingredient> ingredients) {
+		Validate.isTrue(ingredients != null && !ingredients.isEmpty(), "At least one ingredient must be present!");
+		
+		final List<String> ingredientNames = getIngredientNames(ingredients);
+		
+		final StringBuilder queryStr = new StringBuilder();
+		queryStr.append("select distinct r from Recipe r ");
+		queryStr.append("left join r.ingredients ri left join ri.ingredient i ");
+		queryStr.append("where i.name in (:ingredientNames) ");
+		
+		final TypedQuery<Recipe> query = entityManager.createQuery(queryStr.toString(), Recipe.class);
+		query.setParameter("ingredientNames", ingredientNames);
+		return query.getResultList();
+
+	}
+
+	private List<String> getIngredientNames(Collection<Ingredient> ingredients) {
 		final List<String> ingredientNames = new ArrayList<String>();
 		for (Ingredient ingredient : ingredients) {
 			ingredientNames.add(ingredient.getName());
 		}
-		JPQLQuery query = new JPAQuery(entityManager);
-		final QRecipe recipe = QRecipe.recipe;
-		final QRecipeIngredientMapping mapping = QRecipeIngredientMapping.recipeIngredientMapping;
-		final QIngredient ingredient = QIngredient.ingredient;
-		return query.from(recipe).join(recipe.ingredients, mapping).join(mapping.ingredient, ingredient)
-				.where(ingredient.name.in(ingredientNames)).distinct().list(recipe);
-		// join(recipe.ingredients).join(QRecipeIngredientMapping.recipeIngredientMapping.ingredient).where(recipe.ingredients.)).fetchAll().list(recipe);
+		return ingredientNames;
 	}
-
 }

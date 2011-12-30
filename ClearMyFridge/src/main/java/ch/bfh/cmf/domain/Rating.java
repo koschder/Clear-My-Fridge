@@ -14,17 +14,14 @@ public class Rating {
 	private Long id;
 	@ManyToOne(optional = false)
 	private User user;
-	@ManyToOne(optional = false)
-	private Recipe recipe;
 	private int points;
 
 	public Rating() {
 		// required for jpa
 	}
 
-	public Rating(User user, Recipe recipe, int points) {
+	public Rating(User user, int points) {
 		setUser(user);
-		setRecipe(recipe);
 		setPoints(points);
 	}
 
@@ -44,14 +41,6 @@ public class Rating {
 		this.user = user;
 	}
 
-	public Recipe getRecipe() {
-		return recipe;
-	}
-
-	public void setRecipe(Recipe recipe) {
-		this.recipe = recipe;
-	}
-
 	public int getPoints() {
 		return points;
 	}
@@ -67,7 +56,6 @@ public class Rating {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + points;
-		result = prime * result + ((recipe == null) ? 0 : recipe.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -82,11 +70,6 @@ public class Rating {
 			return false;
 		Rating other = (Rating) obj;
 		if (points != other.points)
-			return false;
-		if (recipe == null) {
-			if (other.recipe != null)
-				return false;
-		} else if (!recipe.equals(other.recipe))
 			return false;
 		if (user == null) {
 			if (other.user != null)

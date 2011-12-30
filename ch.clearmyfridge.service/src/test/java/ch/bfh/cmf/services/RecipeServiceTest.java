@@ -12,7 +12,6 @@ import javax.inject.Inject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +20,6 @@ import ch.bfh.cmf.domain.Ingredient;
 import ch.bfh.cmf.domain.Rating;
 import ch.bfh.cmf.domain.Recipe;
 import ch.bfh.cmf.domain.User;
-import ch.bfh.cmf.repositories.RatingRepository;
 import ch.bfh.cmf.repositories.RecipeRepository;
 import ch.bfh.cmf.repositories.UserRepository;
 
@@ -36,8 +34,6 @@ public class RecipeServiceTest {
 	@Inject
 	private RecipeRepository recipeRepository;
 	@Inject
-	private RatingRepository ratingRepository;
-	@Inject
 	private UserRepository userRepository;
 
 	private Recipe chickenCurry;
@@ -46,27 +42,27 @@ public class RecipeServiceTest {
 
 	@Before
 	public void setup() {
-		List<Recipe> recipes = recipeRepository.findAll(new Sort("id"));
-		User user = userRepository.save(new User("testUser"));
+		User user1 = userRepository.save(new User("testUser1"));
+		User user2 = userRepository.save(new User("testUser2"));
+		User user3 = userRepository.save(new User("testUser3"));
+		
 		chickenCurry = createRecipe("Chicken Curry", "curry", "chicken", "rice", "salt");
 		beefCurry = createRecipe("Beef Curry", "curry", "beef", "rice", "salt");
 		tiramisu = createRecipe("Tiramisu", "eggs", "mascarpone", "biscuits", "coffee");
-		recipes = recipeRepository.findAll(new Sort("id"));
+		
+		chickenCurry.addRating(new Rating(user1, 5));
+		chickenCurry.addRating(new Rating(user2, 6));
+		chickenCurry.addRating(new Rating(user3, 5));
+		beefCurry.addRating(new Rating(user1, 5));
+		beefCurry.addRating(new Rating(user2, 4));
+		beefCurry.addRating(new Rating(user3, 5));
+		tiramisu.addRating(new Rating(user1, 8));
+		tiramisu.addRating(new Rating(user2, 8));
+		tiramisu.addRating(new Rating(user3, 8));
+
 		chickenCurry = recipeRepository.save(chickenCurry);
 		beefCurry = recipeRepository.save(beefCurry);
 		tiramisu = recipeRepository.save(tiramisu);
-		recipes = recipeRepository.findAll(new Sort("id"));
-		ratingRepository.save(new Rating(user, chickenCurry, 5));
-		recipes = recipeRepository.findAll(new Sort("id"));
-		ratingRepository.save(new Rating(user, chickenCurry, 6));
-		ratingRepository.save(new Rating(user, chickenCurry, 5));
-		recipes = recipeRepository.findAll(new Sort("id"));
-		ratingRepository.save(new Rating(user, beefCurry, 5));
-		ratingRepository.save(new Rating(user, beefCurry, 4));
-		ratingRepository.save(new Rating(user, beefCurry, 5));
-		ratingRepository.save(new Rating(user, tiramisu, 8));
-		ratingRepository.save(new Rating(user, tiramisu, 8));
-		ratingRepository.save(new Rating(user, tiramisu, 8));
 
 	}
 

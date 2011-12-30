@@ -5,14 +5,14 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import ch.bfh.cmf.repositories.RatingRepository;
 import ch.bfh.cmf.repositories.RecipeRepository;
 import ch.bfh.cmf.repositories.UserRepository;
 
@@ -21,12 +21,10 @@ import ch.bfh.cmf.repositories.UserRepository;
 @Transactional
 public class ModelRelationshipsTest {
 
-	@Autowired
+	@Inject
 	private UserRepository userRepository;
-	@Autowired
+	@Inject
 	private RecipeRepository recipeRepository;
-	@Autowired
-	private RatingRepository ratingRepository;
 
 	@Test
 	public void testPersistingUserDoesNotCascade() {
@@ -35,13 +33,9 @@ public class ModelRelationshipsTest {
 		Recipe recipe = new Recipe();
 		recipe.setAuthor(user);
 
-		Rating rating = new Rating();
-		rating.setUser(user);
-
 		userRepository.save(user);
 		assertEquals(user, userRepository.findAll().iterator().next());
 		assertTrue(recipeRepository.findAll().isEmpty());
-		assertTrue(ratingRepository.findAll().isEmpty());
 	}
 
 	@Test
