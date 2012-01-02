@@ -24,7 +24,7 @@ public class Recipe {
 	private String name;
 	@ManyToOne
 	private User author;
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER, mappedBy = "recipe")
 	private List<RecipeIngredientMapping> ingredients;
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
 	@JoinColumn(name = "recipe_id")
