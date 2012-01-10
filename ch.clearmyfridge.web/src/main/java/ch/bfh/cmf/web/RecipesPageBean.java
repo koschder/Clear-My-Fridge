@@ -8,6 +8,7 @@ import javax.inject.Named;
 import org.springframework.context.annotation.Scope;
 
 import ch.bfh.cmf.domain.Recipe;
+import ch.bfh.cmf.domain.RecipeIngredientMapping;
 import ch.bfh.cmf.repositories.RecipeRepository;
 
 @Named("recipesPageBean")
@@ -17,6 +18,10 @@ public class RecipesPageBean {
 	private RecipeRepository recipeRepository;
 
 	private Recipe currentRecipe;
+
+	private Object mappingToRemove;
+	
+	private RecipeIngredientMapping mappingToAdd = new RecipeIngredientMapping();
 
 	public List<Recipe> getRecipes() {
 		return recipeRepository.findAll();
@@ -46,5 +51,28 @@ public class RecipesPageBean {
 	
 	public void setRecipe(Recipe recipe) {
 		this.currentRecipe = recipe;
+	}
+	
+	public void removeIngredient() {
+		currentRecipe.getIngredients().remove(this.mappingToRemove);
+		this.save();
+	}
+	
+	public void setMappingToRemove(RecipeIngredientMapping ingredient) {
+		this.mappingToRemove = ingredient;
+	}
+	
+	public RecipeIngredientMapping getMappingToAdd() {
+		return mappingToAdd;
+	}
+	
+	public void setMappingToAdd(RecipeIngredientMapping mapper) {
+		this.mappingToAdd = mapper;
+	}
+	
+	public void saveIngredient() {
+		currentRecipe.getIngredients().add(this.mappingToAdd);
+		this.save();
+		this.mappingToAdd = new RecipeIngredientMapping();
 	}
 }

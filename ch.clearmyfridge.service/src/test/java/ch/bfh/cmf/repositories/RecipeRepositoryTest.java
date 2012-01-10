@@ -7,6 +7,8 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ch.bfh.cmf.domain.Ingredient;
 import ch.bfh.cmf.domain.Recipe;
+import ch.bfh.cmf.domain.RecipeIngredientMapping;
 import ch.bfh.cmf.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,6 +31,9 @@ public class RecipeRepositoryTest {
 
 	@Inject
 	private UserRepository userRepository;
+	
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@Test
 	public void testSaveNewRecipe() {
@@ -82,6 +88,23 @@ public class RecipeRepositoryTest {
 
 		recipe = recipeRepository.findByName("PfefferRezept");
 		assertEquals("Pfeffer", recipe.getIngredients().iterator().next().getIngredient().getName());
+	}
+	
+	@Test 
+	public void testRemoveIngredient()
+	{
+		Recipe recipe = new Recipe();
+		recipe.setName("PfefferRezept");
+		Ingredient ingredient = new Ingredient("Pfeffer");
+		recipe.addIngredient(ingredient, 2, "tsp");
+		recipeRepository.save(recipe);
+		
+		recipe.getIngredients().remove(new RecipeIngredientMapping(recipe, ingredient, 1, "tsp"));
+		recipeRepository.save(recipe);
+		entityManager.flush();
+		entityManager.clear();
+		recipe = recipeRepository.findByName("PfefferRezept");
+		assertTrue(recipe.getIngredients().isEmpty());
 	}
 
 }

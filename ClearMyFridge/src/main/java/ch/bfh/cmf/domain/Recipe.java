@@ -1,7 +1,5 @@
 package ch.bfh.cmf.domain;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +14,8 @@ import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.Validate;
 
+import static javax.persistence.GenerationType.*;
+
 @Entity
 public class Recipe {
 	@Id
@@ -24,7 +24,7 @@ public class Recipe {
 	private String name;
 	@ManyToOne
 	private User author;
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER, mappedBy = "recipe")
+	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "recipe")
 	private List<RecipeIngredientMapping> ingredients;
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
 	@JoinColumn(name = "recipe_id")
