@@ -1,88 +1,80 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html" template="/templates/main.xhtml">
 
-<h:head>
-	<title>Clear My Fridge</title>
-</h:head>
+	<ui:define name="title">
+		<h:outputText value="Recipes" />
+	</ui:define>
 
-<h:body>
+	<ui:define name="content">
+		<f:view>
 
-	<f:view>
-		<h2>
-			<h:outputText value="Recipes" />
-		</h2>
-		<h:outputText value="You are logged in as: "/>
-		<h:outputText value="#{securityPageBean.user}"/>
-		<br />
-		<h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
-		
+			
 
-						
-		<h:form id="list">
-		
-			<div>
-				<h:commandButton id="create" action="#{recipesPageBean.create}"
+
+
+			<h:form id="list">
+
+				<div>
+					<h:commandButton id="create" action="#{recipesPageBean.create}"
 						value="+Create" />
-			</div>
-		
-			<h:dataTable id="table" value="#{recipesPageBean.recipes}"
-				var="recipe" border="1">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Id" />
-					</f:facet>
-					<h:outputText value="#{recipe.id}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Name" />
-					</f:facet>
-					<h:outputText value="#{recipe.name}" />
-				</h:column>
+				</div>
 
-				<h:dataTable id="table" value="#{recipe.ingredients}"
-					var="ingredientMapping" border="1">
+				<h:dataTable id="table" value="#{recipesPageBean.recipes}"
+					var="recipe" border="1">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Id" />
+						</f:facet>
+						<h:outputText value="#{recipe.id}" />
+					</h:column>
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Name" />
 						</f:facet>
-						<h:outputText value="#{ingredientMapping.ingredient.name}" />
+						<h:outputText value="#{recipe.name}" />
 					</h:column>
+
+					<h:dataTable id="table" value="#{recipe.ingredients}"
+						var="ingredientMapping" border="1">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Name" />
+							</f:facet>
+							<h:outputText value="#{ingredientMapping.ingredient.name}" />
+						</h:column>
+					</h:dataTable>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Edit" />
+						</f:facet>
+						<h:commandButton id="edit" action="#{recipesPageBean.edit}"
+							value="Edit">
+							<f:setPropertyActionListener target="#{recipesPageBean.recipe}"
+								value="#{recipe}" />
+						</h:commandButton>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Delete" />
+						</f:facet>
+						<h:commandButton id="delete" action="#{recipesPageBean.delete}"
+							value="Delete">
+							<f:setPropertyActionListener target="#{recipesPageBean.recipe}"
+								value="#{recipe}" />
+						</h:commandButton>
+					</h:column>
+
 				</h:dataTable>
-
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Edit" />
-					</f:facet>
-					<h:commandButton id="edit" action="#{recipesPageBean.edit}"
-						value="Edit">
-						<f:setPropertyActionListener target="#{recipesPageBean.recipe}"
-							value="#{recipe}" />
-					</h:commandButton>
-				</h:column>
-
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Delete" />
-					</f:facet>
-					<h:commandButton id="delete" action="#{recipesPageBean.delete}"
-						value="Delete">
-						<f:setPropertyActionListener target="#{recipesPageBean.recipe}"
-							value="#{recipe}" />
-					</h:commandButton>
-				</h:column>
-
-			</h:dataTable>
-		</h:form>
+			</h:form>
 
 
-		<h:messages style="color: red;" />
+			<h:messages style="color: red;" />
 
-	</f:view>
-
-</h:body>
-
-</html>
+		</f:view>
+	</ui:define>
+</ui:composition>
