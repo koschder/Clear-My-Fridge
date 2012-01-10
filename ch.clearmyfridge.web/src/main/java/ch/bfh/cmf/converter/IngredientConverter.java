@@ -1,7 +1,5 @@
 package ch.bfh.cmf.converter;
 
-import java.util.ArrayList;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -20,7 +18,7 @@ public class IngredientConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-		return "" + ((Ingredient) arg2).getId();
+		return ((Ingredient) arg2).getId().toString();
 	}
 
 }
