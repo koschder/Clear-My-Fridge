@@ -15,9 +15,9 @@
 		<h:commandButton id="save" action="#{recipesPageBean.save}"
 			value="Save" styleClass="input-button" />
 
-		<p>
-		<h3>Ingredients</h3>
 		
+		<h3>Ingredients</h3>
+		<p>
 		<h:dataTable id="table" value="#{recipesPageBean.recipe.ingredients}"
 			var="mapping" headerClass="table-header" columnClasses="col col-name,col col-id, col col-id, col col-button" >
 			<h:column>
