@@ -1,3 +1,43 @@
-#Page {width:980px;border:1px solid red;margin: auto;}
+* {font-family:sans-serif; }
+
+#Page {
+	width:980px;
+	margin: auto;
+	background: url(#{resource["images:background.png"]});
+	min-height:500px;
+	background-repeat: no-repeat;
+}
+
+
+#Content {
+	width:700px;
+	background-color: #FFF;
+	margin: 30px auto 20px auto;
+	padding: 30px;
+	box-shadow: 0 0 5px 5px #888;
+}
+
+#list {
+	width:600px;
+}
+
+.toolbar {padding:10px 0px 10px 0px;}
+/* Forms */
+
+#filterRecipe {float:right;}
+
+
+/* tables */
+.table {
+	
+}
+
+.table-header {text-align: left;}
+
+.col {border:none;}
+
+.col-id {width:50px;}
+.col-name {width:200px;}
+.col-button {width:80px;}
 
 #MetaNavigation {float:right;}

@@ -15,18 +15,29 @@
 
 
 
-			<h:form id="list">
+			
+				
+				<div class="toolbar">
+					<h:form id="filterRecipe">
+							<h:outputText value="Filter" />
+							<h:inputText value="" />
+					</h:form>
+					
+					<h:form id="createRecipe">
+						<h:commandButton id="create" action="#{recipesPageBean.create}"
+						value="+Create" styleClass="create"/>
+					</h:form>
+						
 
-				<div>
-					<h:commandButton id="create" action="#{recipesPageBean.create}"
-						value="+Create" />
 				</div>
-
+				<h:form id="listRecipes">
 				<h:dataTable id="table" value="#{recipesPageBean.recipes}"
-					var="recipe" border="1">
+					var="recipe" columnClasses="col col-id,col col-name,col col-button,col col-button"
+					headerClass="table-header" styleClass="table"
+					>
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Id" />
+							<h:outputText value="Id"/>
 						</f:facet>
 						<h:outputText value="#{recipe.id}" />
 					</h:column>
@@ -49,7 +60,7 @@
 
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Edit" />
+							<h:outputText value="" />
 						</f:facet>
 						<h:commandButton id="edit" action="#{recipesPageBean.edit}"
 							value="Edit">
@@ -60,7 +71,7 @@
 
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Delete" />
+							<h:outputText value="" />
 						</f:facet>
 						<h:commandButton id="delete" action="#{recipesPageBean.delete}"
 							value="Delete">
@@ -70,11 +81,11 @@
 					</h:column>
 
 				</h:dataTable>
+
 			</h:form>
-
-
 			<h:messages style="color: red;" />
 
 		</f:view>
+		
 	</ui:define>
 </ui:composition>

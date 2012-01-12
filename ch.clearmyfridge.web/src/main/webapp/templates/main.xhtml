@@ -11,12 +11,11 @@
 <f:view contentType="text/html">
 	<h:body>
 		<div id="Page">
-			<div class="content">
+			<div id="Content">
 			<div id="MetaNavigation">
 				<h:outputText value="Hello #{securityPageBean.user}, " />
 				<h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
 			</div>
-			
 				<h1>
 					<ui:insert name="title">Default Title</ui:insert>
 				</h1>
