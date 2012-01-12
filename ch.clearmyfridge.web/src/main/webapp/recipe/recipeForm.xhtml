@@ -6,20 +6,20 @@
 <ui:composition>
 	<h:form id="editRecipe">
 
-		<h:outputText value="Name" />
+		<h:outputLabel value="Name" for="name" />
 		<h:inputText value="#{recipesPageBean.recipe.name}" />
 		<br />
-		<h:outputText value="Description" />
+		<h:outputLabel value="Description" for="description" />
 		<h:inputTextarea value="#{recipesPageBean.recipe.description}" />
-
+		<br />
 		<h:commandButton id="save" action="#{recipesPageBean.save}"
-			value="Save" />
+			value="Save" styleClass="input-button" />
 
 		<p>
 		<h3>Ingredients</h3>
 		
 		<h:dataTable id="table" value="#{recipesPageBean.recipe.ingredients}"
-			var="mapping" border="1">
+			var="mapping" headerClass="table-header" columnClasses="col col-name,col col-id, col col-id, col col-button" >
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Name" />
@@ -65,15 +65,15 @@
 		
 		
 		<br />
-		<h:outputText value="Quantity" />
+		<h:outputLabel value="Quantity" for="quantity" />
 		<h:inputText value="#{recipesPageBean.mappingToAdd.quantity}" />
 		<br />
-		<h:outputText value="Unit" />
+		<h:outputLabel value="Unit" for="unit" />
 		<h:inputText value="#{recipesPageBean.mappingToAdd.unit}" />
 		
 		<br />
 		<h:commandButton id="save" action="#{recipesPageBean.saveIngredient}"
-			value="Save" />
+			value="Save" styleClass="input-button"/>
 	</h:form>
 </ui:composition>
 </html>

@@ -29,11 +29,11 @@ public class RecipesPageBean {
 
 	public Object create() {
 		currentRecipe = new Recipe();
-		return "/recipe/create.xhtml";
+		return "/recipe/create.xhtml?faces-redirect=true";
 	}
 
 	public Object edit() {
-		return "/recipe/edit.xhtml";
+		return "/recipe/edit.xhtml?faces-redirect=true";
 	}
 
 	public Object delete() {

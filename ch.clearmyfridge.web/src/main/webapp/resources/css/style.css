@@ -24,8 +24,12 @@
 .toolbar {padding:10px 0px 10px 0px;}
 /* Forms */
 
-#filterRecipe {float:right;}
 
+label {float:left;width:130px;}
+input {width:200px;}
+textarea {font-family:Verdana,Arial,sans-serif;font-size:1em;width:203px;}
+input.input-button {width:auto;}
+#filterRecipe {float:right;}
 
 /* tables */
 .table {
