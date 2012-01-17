@@ -55,6 +55,19 @@
 					</f:facet>
 					<h:commandLink action="#{searchPageBean.showRecipe}" >#{recipe.name}</h:commandLink>
 				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Description" />
+					</f:facet>
+					<h:outputText value="#{recipe.description}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Rating" />
+					</f:facet>
+					
+				</h:column>
 			</h:dataTable>
 			</h:form>
 			<h:messages style="color: red;" />
