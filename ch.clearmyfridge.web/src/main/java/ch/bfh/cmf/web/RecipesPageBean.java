@@ -7,8 +7,10 @@ import javax.inject.Named;
 
 import org.springframework.context.annotation.Scope;
 
+import ch.bfh.cmf.domain.Ingredient;
 import ch.bfh.cmf.domain.Recipe;
 import ch.bfh.cmf.domain.RecipeIngredientMapping;
+import ch.bfh.cmf.repositories.IngredientRepository;
 import ch.bfh.cmf.repositories.RecipeRepository;
 
 @Named("recipesPageBean")
@@ -16,12 +18,37 @@ import ch.bfh.cmf.repositories.RecipeRepository;
 public class RecipesPageBean {
 	@Inject
 	private RecipeRepository recipeRepository;
+	
+	@Inject
+	private IngredientRepository ingredientRepository;
 
 	private Recipe currentRecipe;
 
 	private Object mappingToRemove;
 	
 	private RecipeIngredientMapping mappingToAdd = new RecipeIngredientMapping();
+	
+	private Long fridgeItemId;
+	private int quantity;
+	
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
+	private String unit;
 	
 
 	public List<Recipe> getRecipes() {
@@ -76,9 +103,20 @@ public class RecipesPageBean {
 	}
 	
 	public void saveIngredient() {
-		this.mappingToAdd.setRecipe(currentRecipe);
-		currentRecipe.getIngredients().add(this.mappingToAdd);
+		
+		//this.mappingToAdd.setRecipe(currentRecipe);
+		Ingredient ingredient = ingredientRepository.findOne(this.fridgeItemId);
+		getRecipe().addIngredient(ingredient, this.quantity, this.unit);
 		this.save();
-		this.mappingToAdd = new RecipeIngredientMapping();
+		//this.mappingToAdd = new RecipeIngredientMapping();
+	}
+	
+	public String getFridgeItemId()
+	{
+		return "";
+	}
+
+	public void setFridgeItemId(String itemId) {
+		this.fridgeItemId = Long.valueOf(itemId);
 	}
 }

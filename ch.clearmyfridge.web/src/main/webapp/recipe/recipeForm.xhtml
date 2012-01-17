@@ -56,19 +56,21 @@
 	</h:form>
 	
 	<h:form>
-		<h:selectOneMenu value="#{recipesPageBean.mappingToAdd.ingredient}" id="ingredient">
-			<f:selectItems value="#{ingredientsPageBean.ingredients}" var="ingredient" 
-				itemLabel="${ingredient.name}" itemValue="#{ingredient}" />
-				<f:converter converterId="ingredientConverter" />
-		</h:selectOneMenu>
+			<h:selectOneMenu value="#{recipesPageBean.fridgeItemId}"
+					immediate="true">
+					<f:selectItems value="#{searchPageBean.availableIngredients}"
+						var="ingredient" itemLabel="#{ingredient.name}"
+						itemValue="#{ingredient.id}"></f:selectItems>
+			</h:selectOneMenu>
+	
 		
 		
 		<br />
 		<h:outputLabel value="Quantity" for="quantity" />
-		<h:inputText value="#{recipesPageBean.mappingToAdd.quantity}" id="quantity"/>
+		<h:inputText value="#{recipesPageBean.quantity}" id="quantity"/>
 		<br />
 		<h:outputLabel value="Unit" for="unit" />
-		<h:inputText value="#{recipesPageBean.mappingToAdd.unit}" id="unit"/>
+		<h:inputText value="#{recipesPageBean.unit}" id="unit"/>
 		
 		<br />
 		<h:commandButton id="saveIngredient" action="#{recipesPageBean.saveIngredient}"

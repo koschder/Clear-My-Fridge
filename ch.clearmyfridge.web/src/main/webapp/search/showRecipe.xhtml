@@ -12,7 +12,7 @@
 
 	<f:view>
 		<h2>
-			<h:outputText value="Recipe" /> <h:outputText value="#{recipesPageBean.recipe.name}" />
+			<h:outputText value="Recipe " /><h:outputText value="#{recipesPageBean.recipe.name}" />
 		</h2>
 
 		<h:form>		
@@ -21,13 +21,22 @@
 		
 			<h3><h:outputText value="Ingredients" /></h3>
 			<h:dataTable id="table" value="#{recipesPageBean.recipe.ingredients}"
-			var="mapping" border="1">
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Name" />
-				</f:facet>
+			var="mapping" headerClass="table-header" styleClass="table" columnClasses="col col-id,col-id,col col-name">
+			
+						<h:column>
+
 				<h:outputText value="#{mapping.quantity}" />
 			</h:column>
+			
+						<h:column>
+				<h:outputText value="#{mapping.unit}" />
+			</h:column>
+			
+									<h:column>
+				<h:outputText value="#{mapping.ingredient.name}" />
+			</h:column>
+			
+
 			</h:dataTable>
 			
 			<h3><h:outputText value="Rating" /></h3>

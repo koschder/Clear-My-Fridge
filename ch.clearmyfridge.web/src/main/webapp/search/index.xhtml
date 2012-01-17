@@ -15,7 +15,7 @@
 			<h:dataTable id="fridgeContents"
 				value="#{searchPageBean.fridgeContents}" var="ingredient"
 				columnClasses="col col-id,col col-name,col col-button,col col-button"
-					headerClass="table-header" styleClass="table recipeList">
+				headerClass="table-header" styleClass="table recipeList">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Name" />
@@ -24,12 +24,12 @@
 				</h:column>
 
 				<h:column>
-				<h:form>
-					<h:commandButton  id="remove" action="#{searchPageBean.removeItem}"
-						value="Remove" styleClass="input-button">
-						<f:setPropertyActionListener target="#{searchPageBean.fridgeItem}"
-							value="#{ingredient}"></f:setPropertyActionListener>
-					</h:commandButton>
+					<h:form>
+						<h:commandButton id="remove" action="#{searchPageBean.removeItem}"
+							value="Remove" styleClass="input-button">
+							<f:setPropertyActionListener
+								target="#{searchPageBean.fridgeItem}" value="#{ingredient}"></f:setPropertyActionListener>
+						</h:commandButton>
 					</h:form>
 				</h:column>
 			</h:dataTable>
@@ -44,42 +44,40 @@
 				<h:commandButton value="I have this!"
 					action="#{searchPageBean.addFridgeItem}" styleClass="input-button">
 				</h:commandButton>
-				
 
-				
+
+
 			</h:form>
 			<div class="seperator"></div>
 			<h:form>
-							<h:commandButton value="What have you got for me?" styleClass="input-button">
-				<f:ajax render="recipes" />
-				</h:commandButton>
-			<h:dataTable id="recipes" value="#{searchPageBean.recipes}"
-			columnClasses="col col-id,col col-name,col col-button,col col-button"
-					headerClass="table-header" styleClass="table"
-				 var="recipe">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Name" />
-					</f:facet>
-					<h:commandLink action="#{searchPageBean.showRecipe}" >#{recipe.name}</h:commandLink>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Description" />
-					</f:facet>
-					<h:outputText value="#{recipe.description}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Rating" />
-					</f:facet>
-					
-				</h:column>
-			</h:dataTable>
+				<h:dataTable id="recipes" value="#{searchPageBean.recipes}"
+					columnClasses="col col-id,col col-name,col col-button,col col-button"
+					headerClass="table-header" styleClass="table" var="recipe">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Name" />
+						</f:facet>
+						<h:commandLink action="#{searchPageBean.showRecipe}">
+							<f:setPropertyActionListener target="#{recipesPageBean.recipe}"
+								value="#{recipe}"></f:setPropertyActionListener>#{recipe.name}</h:commandLink>
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Description" />
+						</f:facet>
+						<h:outputText value="#{recipe.description}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Rating" />
+						</f:facet>
+
+					</h:column>
+				</h:dataTable>
 			</h:form>
 			<h:messages style="color: red;" />
-			
+
 
 		</f:view>
 	</ui:define>
