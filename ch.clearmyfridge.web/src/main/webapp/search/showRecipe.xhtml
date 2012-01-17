@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"  template="/templates/main.xhtml">
 
 <h:head>
 	<title>Clear My Fridge</title>
@@ -36,22 +36,6 @@
 
 		<h:messages style="color: red;" />
 
-		<h:form>
-			<h:selectOneListbox value="#{recipesPageBean.ratingValue}">
-				<f:selectItem itemValue="1" />
-				<f:selectItem itemValue="2" />
-				<f:selectItem itemValue="3" />
-				<f:selectItem itemValue="4" />
-				<f:selectItem itemValue="5" />
-				<f:selectItem itemValue="6" />
-				<f:selectItem itemValue="7" />
-				<f:selectItem itemValue="8" />
-				<f:selectItem itemValue="9" />
-				<f:selectItem itemValue="10" />
-			</h:selectOneListbox>
-			
-			<h:commandButton value="rate" action="#{recipesPageBean.rate}" />
-		</h:form>
 	</f:view>
 
 </h:body>

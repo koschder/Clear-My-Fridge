@@ -61,4 +61,6 @@ public class SearchResultsPageBean {
 	public void setIngredientName(String ingredientName) {
 		this.ingredientName = ingredientName;
 	}
+	
+
 }

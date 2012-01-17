@@ -13,7 +13,9 @@
 				<h:outputText value="Search recipe database" />
 			</h2>
 			<h:dataTable id="fridgeContents"
-				value="#{searchPageBean.fridgeContents}" border="1" var="ingredient">
+				value="#{searchPageBean.fridgeContents}" var="ingredient"
+				columnClasses="col col-id,col col-name,col col-button,col col-button"
+					headerClass="table-header" styleClass="table recipeList">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Name" />
@@ -42,16 +44,21 @@
 					action="#{searchPageBean.addFridgeItem}">
 				</h:commandButton>
 			</h:form>
+			<h:form>
 			<h:dataTable id="recipes" value="#{searchPageBean.recipes}"
-				border="1" var="recipe">
+			columnClasses="col col-id,col col-name,col col-button,col col-button"
+					headerClass="table-header" styleClass="table"
+				 var="recipe">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Name" />
 					</f:facet>
-					<h:outputText value="#{recipe.name}" />
+					<h:commandLink action="#{searchPageBean.showRecipe}" >#{recipe.name}</h:commandLink>
 				</h:column>
 			</h:dataTable>
+			</h:form>
 			<h:messages style="color: red;" />
+			
 
 		</f:view>
 	</ui:define>

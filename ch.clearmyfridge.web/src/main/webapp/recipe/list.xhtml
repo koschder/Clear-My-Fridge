@@ -1,4 +1,3 @@
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -10,12 +9,6 @@
 
 	<ui:define name="content">
 		<f:view>
-
-			
-
-
-
-			
 				
 				<div class="toolbar">
 					<h:form id="filterRecipe">
@@ -33,7 +26,7 @@
 				<h:form id="listRecipes">
 				<h:dataTable id="table" value="#{recipesPageBean.recipes}"
 					var="recipe" columnClasses="col col-id,col col-name,col col-button,col col-button"
-					headerClass="table-header" styleClass="table"
+					headerClass="table-header" styleClass="table" 
 					>
 					<h:column>
 						<f:facet name="header">

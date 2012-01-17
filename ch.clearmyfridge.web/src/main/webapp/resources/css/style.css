@@ -33,7 +33,7 @@ input.input-button {width:auto;}
 
 /* tables */
 .table {
-	
+	width: 100%;
 }
 
 .table-header {text-align: left;}

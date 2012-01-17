@@ -64,4 +64,8 @@ public class SearchPageBean {
 	public void addFridgeItem() {
 		fridgeContents.add(fridgeItem);
 	}
+	
+	public String showRecipe() {
+		return "/search/showRecipe.xhtml";
+	}
 }
