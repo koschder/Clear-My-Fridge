@@ -44,4 +44,6 @@ input.input-button {width:auto;}
 .col-name {width:200px;}
 .col-button {width:80px;}
 
-#MetaNavigation {float:right;}
+#MetaNavigation {height:30px;}
+
+.seperator {height:20px;}

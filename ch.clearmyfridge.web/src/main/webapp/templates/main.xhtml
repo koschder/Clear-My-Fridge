@@ -13,8 +13,21 @@
 		<div id="Page">
 			<div id="Content">
 			<div id="MetaNavigation">
-				<h:outputText value="Hello #{securityPageBean.user}, " />
-				<h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
+				<div style="float:right;">
+					<h:outputText value="Hello #{securityPageBean.user}, " />
+					<h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
+				</div>
+				
+				<div class="float:left">
+					<h:outputLink value="#{request.contextPath}/faces/search/index.xhtml?faces-redirect=true">Clear my fridge</h:outputLink>
+					&nbsp;-&nbsp;
+					<h:outputLink value="#{request.contextPath}/faces/recipe/list.xhtml?faces-redirect=true">Show all</h:outputLink>
+					&nbsp;-&nbsp;
+					<h:outputLink value="#{request.contextPath}/faces/recipe/create.xhtml?faces-redirect=true">Create new Recipe</h:outputLink>
+					
+				
+				</div>
+				
 			</div>
 				<h1>
 					<ui:insert name="title">Default Title</ui:insert>

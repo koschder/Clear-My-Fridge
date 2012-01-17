@@ -26,13 +26,14 @@
 				<h:column>
 				<h:form>
 					<h:commandButton  id="remove" action="#{searchPageBean.removeItem}"
-						value="Remove">
+						value="Remove" styleClass="input-button">
 						<f:setPropertyActionListener target="#{searchPageBean.fridgeItem}"
 							value="#{ingredient}"></f:setPropertyActionListener>
 					</h:commandButton>
 					</h:form>
 				</h:column>
 			</h:dataTable>
+			<div class="seperator"></div>
 			<h:form id="fridgeForm">
 				<h:selectOneMenu value="#{searchPageBean.fridgeItemId}"
 					immediate="true">
@@ -41,10 +42,17 @@
 						itemValue="#{ingredient.id}"></f:selectItems>
 				</h:selectOneMenu>
 				<h:commandButton value="I have this!"
-					action="#{searchPageBean.addFridgeItem}">
+					action="#{searchPageBean.addFridgeItem}" styleClass="input-button">
 				</h:commandButton>
+				
+
+				
 			</h:form>
+			<div class="seperator"></div>
 			<h:form>
+							<h:commandButton value="What have you got for me?" styleClass="input-button">
+				<f:ajax render="recipes" />
+				</h:commandButton>
 			<h:dataTable id="recipes" value="#{searchPageBean.recipes}"
 			columnClasses="col col-id,col col-name,col col-button,col col-button"
 					headerClass="table-header" styleClass="table"

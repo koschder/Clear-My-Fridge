@@ -22,6 +22,7 @@ public class RecipesPageBean {
 	private Object mappingToRemove;
 	
 	private RecipeIngredientMapping mappingToAdd = new RecipeIngredientMapping();
+	
 
 	public List<Recipe> getRecipes() {
 		return recipeRepository.findAll();
@@ -29,7 +30,7 @@ public class RecipesPageBean {
 
 	public Object create() {
 		currentRecipe = new Recipe();
-		return "/recipe/create.xhtml?faces-redirect=true";
+		return "/recipe/create.xhtml";
 	}
 
 	public Object edit() {
@@ -42,10 +43,14 @@ public class RecipesPageBean {
 	}
 	public Object save() {
 		recipeRepository.save(currentRecipe);
-		return "/recipe/list.xhtml";
+		return "/search/index.xhtml";
 	}
 
 	public Recipe getRecipe() {
+		//TODO hack for presentation
+		if (currentRecipe == null) {
+			currentRecipe = new Recipe();
+		}
 		return currentRecipe;
 	}
 	
@@ -71,6 +76,7 @@ public class RecipesPageBean {
 	}
 	
 	public void saveIngredient() {
+		this.mappingToAdd.setRecipe(currentRecipe);
 		currentRecipe.getIngredients().add(this.mappingToAdd);
 		this.save();
 		this.mappingToAdd = new RecipeIngredientMapping();

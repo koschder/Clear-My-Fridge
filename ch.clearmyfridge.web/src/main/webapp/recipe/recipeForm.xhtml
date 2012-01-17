@@ -7,10 +7,10 @@
 	<h:form id="editRecipe">
 
 		<h:outputLabel value="Name" for="name" />
-		<h:inputText value="#{recipesPageBean.recipe.name}" />
+		<h:inputText value="#{recipesPageBean.recipe.name}" id="name"/>
 		<br />
 		<h:outputLabel value="Description" for="description" />
-		<h:inputTextarea value="#{recipesPageBean.recipe.description}" />
+		<h:inputTextarea value="#{recipesPageBean.recipe.description}" id="description"/>
 		<br />
 		<h:commandButton id="save" action="#{recipesPageBean.save}"
 			value="Save" styleClass="input-button" />
@@ -56,23 +56,22 @@
 	</h:form>
 	
 	<h:form>
-		<h:selectOneMenu value="#{recipesPageBean.mappingToAdd.ingredient}">
+		<h:selectOneMenu value="#{recipesPageBean.mappingToAdd.ingredient}" id="ingredient">
 			<f:selectItems value="#{ingredientsPageBean.ingredients}" var="ingredient" 
 				itemLabel="${ingredient.name}" itemValue="#{ingredient}" />
-			<f:converter converterId="ingredientConverter" />
-			
+				<f:converter converterId="ingredientConverter" />
 		</h:selectOneMenu>
 		
 		
 		<br />
 		<h:outputLabel value="Quantity" for="quantity" />
-		<h:inputText value="#{recipesPageBean.mappingToAdd.quantity}" />
+		<h:inputText value="#{recipesPageBean.mappingToAdd.quantity}" id="quantity"/>
 		<br />
 		<h:outputLabel value="Unit" for="unit" />
-		<h:inputText value="#{recipesPageBean.mappingToAdd.unit}" />
+		<h:inputText value="#{recipesPageBean.mappingToAdd.unit}" id="unit"/>
 		
 		<br />
-		<h:commandButton id="save" action="#{recipesPageBean.saveIngredient}"
+		<h:commandButton id="saveIngredient" action="#{recipesPageBean.saveIngredient}"
 			value="Save" styleClass="input-button"/>
 	</h:form>
 </ui:composition>
