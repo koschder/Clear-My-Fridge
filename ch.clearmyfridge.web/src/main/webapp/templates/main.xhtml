@@ -19,10 +19,15 @@
 				</div>
 				
 				<div class="float:left">
-					<h:outputLink value="#{request.contextPath}/faces/search/index.xhtml?faces-redirect=true">Clear my fridge</h:outputLink>
-					&nbsp;-&nbsp;
-					<h:outputLink value="#{request.contextPath}/faces/recipe/list.xhtml?faces-redirect=true">My Recipes</h:outputLink>
-					
+					<h:outputLink 
+						value="#{request.contextPath}/faces/search/index.xhtml?faces-redirect=true">
+						Clear my fridge
+					</h:outputLink>
+					<h:outputText rendered="#{securityPageBean.user == 'admin'}" value="&nbsp;-&nbsp;" />
+					<h:outputLink  rendered="#{securityPageBean.user == 'admin'}"
+						value="#{request.contextPath}/faces/recipe/list.xhtml?faces-redirect=true">
+						My Recipes
+					</h:outputLink>
 				
 				</div>
 				
