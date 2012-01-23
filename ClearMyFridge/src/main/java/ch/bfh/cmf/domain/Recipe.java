@@ -25,9 +25,11 @@ public class Recipe {
 	private String name;
 	@ManyToOne
 	private User author;
+
 	@OneToMany(cascade = { CascadeType.ALL }, orphanRemoval = true, mappedBy = "recipe")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<RecipeIngredientMapping> ingredients;
+
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = "recipe_id")

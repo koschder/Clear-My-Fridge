@@ -4,14 +4,23 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import ch.bfh.cmf.domain.Ingredient;
+import ch.bfh.cmf.domain.Rating;
 import ch.bfh.cmf.domain.Recipe;
 import ch.bfh.cmf.domain.RecipeIngredientMapping;
+import ch.bfh.cmf.domain.User;
 import ch.bfh.cmf.repositories.IngredientRepository;
 import ch.bfh.cmf.repositories.RecipeRepository;
+import ch.bfh.cmf.repositories.UserRepository;
 
 @Named("recipesPageBean")
 @Scope("session")
@@ -23,6 +32,12 @@ public class RecipesPageBean {
 	private IngredientRepository ingredientRepository;
 
 	private Recipe currentRecipe;
+	
+	@PersistenceContext
+	private EntityManager entityManager;
+	
+	@Inject
+	private UserRepository userRepository;
 
 	private Object mappingToRemove;
 	
@@ -30,7 +45,16 @@ public class RecipesPageBean {
 	
 	private Long fridgeItemId;
 	private int quantity;
-	
+
+	private int ratingValueToSave;
+
+	public int getRatingValueToSave() {
+		return ratingValueToSave;
+	}
+
+	public void setRatingValueToSave(int ratingValue) {
+		this.ratingValueToSave = ratingValue;
+	}
 
 	public int getQuantity() {
 		return quantity;
@@ -118,5 +142,19 @@ public class RecipesPageBean {
 
 	public void setFridgeItemId(String itemId) {
 		this.fridgeItemId = Long.valueOf(itemId);
+	}
+	
+	public void rate() {
+		SecurityContext sec = SecurityContextHolder.getContext();
+		String name = sec.getAuthentication().getName();
+		
+		User user = userRepository.findByName(name);
+		System.out.println(user);
+		
+		Rating rating = new Rating();
+		rating.setPoints(this.ratingValueToSave);
+		rating.setUser(user);
+		getRecipe().addRating(rating);
+		this.save();
 	}
 }

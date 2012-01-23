@@ -14,7 +14,7 @@
 			<div id="Content">
 			<div id="MetaNavigation">
 				<div style="float:right;">
-					<h:outputText value="Hello #{securityPageBean.user}, " />
+					<h:outputText value="Hello #{securityPageBean.userName}, " />
 					<h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
 				</div>
 				
@@ -23,8 +23,8 @@
 						value="#{request.contextPath}/faces/search/index.xhtml?faces-redirect=true">
 						Clear my fridge
 					</h:outputLink>
-					<h:outputText rendered="#{securityPageBean.user == 'admin'}" value="&nbsp;-&nbsp;" />
-					<h:outputLink  rendered="#{securityPageBean.user == 'admin'}"
+					<h:outputText rendered="#{securityPageBean.userName == 'admin'}" value="&nbsp;-&nbsp;" />
+					<h:outputLink  rendered="#{securityPageBean.userName == 'admin'}"
 						value="#{request.contextPath}/faces/recipe/list.xhtml?faces-redirect=true">
 						My Recipes
 					</h:outputLink>

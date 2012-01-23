@@ -8,8 +8,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 @Named("securityPageBean")
 @Scope("session")
 public class SecurityPageBean {
-	public String getUser()
+	public String getUserName()
 	{
 		return SecurityContextHolder.getContext().getAuthentication().getName();
 	}
+	
 }

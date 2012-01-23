@@ -38,10 +38,33 @@
 			
 
 			</h:dataTable>
-			
-			<h3><h:outputText value="Rating" /></h3>
-			
+					
 		</h:form>
+		
+		<p>
+		<h:outputText value="Rating:"></h:outputText>
+		<h:outputText value="#{recipe.ratingValue}" />
+		</p>	
+		
+		<h3><h:outputText value="Rating" /></h3>
+		<h:form rendered="#{securityPageBean.userName != 'admin'}">
+			
+			
+			<h:selectOneMenu value="#{recipesPageBean.ratingValueToSave}">
+				<f:selectItem itemValue="1" itemLabel="1"></f:selectItem>
+				<f:selectItem itemValue="2" itemLabel="2"></f:selectItem>
+				<f:selectItem itemValue="3" itemLabel="3"></f:selectItem>
+				<f:selectItem itemValue="4" itemLabel="4"></f:selectItem>
+				<f:selectItem itemValue="5" itemLabel="5"></f:selectItem>
+				<f:selectItem itemValue="6" itemLabel="6"></f:selectItem>
+				<f:selectItem itemValue="7" itemLabel="7"></f:selectItem>
+				<f:selectItem itemValue="8" itemLabel="8"></f:selectItem>
+				<f:selectItem itemValue="9" itemLabel="9"></f:selectItem>
+			</h:selectOneMenu>	
+			
+			<h:commandButton action="#{recipesPageBean.rate}" value="Rate" /> 
+		</h:form>	
+
 
 		<h:messages style="color: red;" />
 
