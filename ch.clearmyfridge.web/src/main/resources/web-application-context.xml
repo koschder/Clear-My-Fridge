@@ -15,7 +15,7 @@
 	<http auto-config="true">
     	<intercept-url pattern="/faces/recipe/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/**" access="ROLE_USER, ROLE_ADMIN" />
-		<form-login />
+		<form-login default-target-url="/faces/search" />
 		<access-denied-handler error-page="/faces/accessDenied.xhtml"/>
 		<logout invalidate-session="true" />
 	</http>
