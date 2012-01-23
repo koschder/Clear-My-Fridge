@@ -157,4 +157,17 @@ public class RecipesPageBean {
 		getRecipe().addRating(rating);
 		this.save();
 	}
+	
+	public int getAverageRating() {
+		if (getRecipe().getRatings() == null || getRecipe().getRatings().size() == 0) {
+			return 0;
+		}
+		
+		int sum = 0;
+		for (Rating rating: getRecipe().getRatings()){
+			sum += rating.getPoints();
+		}
+
+		return sum / getRecipe().getRatings().size();
+	}
 }
