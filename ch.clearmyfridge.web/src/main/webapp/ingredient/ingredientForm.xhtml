@@ -5,11 +5,11 @@
 <ui:composition>
 	<h:form id="editRecipe">
 
-		<h:outputText value="Name" />
+		<h:outputLabel value="Name" />
 		<h:inputText value="#{ingredientsPageBean.ingredient.name}" />
 		<br />
 		<h:commandButton id="save" action="#{ingredientsPageBean.save}"
-			value="Save" />
+			value="Save" styleClass="input-button" />
 
 	</h:form>
 </ui:composition>
