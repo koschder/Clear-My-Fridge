@@ -8,23 +8,37 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ch.bfh.cmf.domain.Ingredient;
 import ch.bfh.cmf.domain.Rating;
 import ch.bfh.cmf.domain.Recipe;
 import ch.bfh.cmf.domain.RecipeIngredientMapping;
+import ch.bfh.cmf.repositories.IngredientRepository;
 import ch.bfh.cmf.repositories.RecipeRepository;
 
 @Service("recipeService")
+@Transactional
 public class RecipeServiceImpl implements RecipeService {
 
 	@Inject 
 	RecipeRepository recipeRepository;
+	@Inject
+	IngredientRepository ingredientRepository;
+	
 	@Override
 	public List<Recipe> findRecipesUsing(Collection<Ingredient> ingredients) {
 		final List<Recipe> recipesContainingIngredients = recipeRepository.findByIngredients(ingredients);
 		Collections.sort(recipesContainingIngredients, new RecipeComparator(ingredients));
 		return recipesContainingIngredients;
+	}
+	
+	@Override
+	public Recipe addIngredient(Recipe recipe, Long ingredientId, int quantity, String unit) {
+		recipe = recipeRepository.findOne(recipe.getId());
+		Ingredient ingredient = ingredientRepository.findOne(ingredientId);
+		recipe.addIngredient(ingredient, quantity, unit);
+		return recipeRepository.save(recipe);
 	}
 
 	private class RecipeComparator implements Comparator<Recipe>
