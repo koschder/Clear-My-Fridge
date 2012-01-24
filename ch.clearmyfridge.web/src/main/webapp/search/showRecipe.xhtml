@@ -43,10 +43,10 @@
 		
 		<p>
 		<h:outputText value="Rating:"></h:outputText>
-		<h:outputText value="#{recipe.ratingValue}" />
+		<h:outputText value=" #{recipesPageBean.averageRating} / 10" />
 		</p>	
 		
-		<h3><h:outputText value="Rating" /></h3>
+		<h3><h:outputText value="Rating" rendered="#{securityPageBean.userName != 'admin'}"/></h3>
 		<h:form rendered="#{securityPageBean.userName != 'admin'}">
 			
 			
